@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "code-tools-cmp": {
+      "command": "bin/code-tools-mcp.exe",
+      "args": ["stdio", "--config", "./config.json"],
+      "env": {}
+    }
+  }
+}

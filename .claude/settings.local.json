@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["code-tools-cmp"]
+}
