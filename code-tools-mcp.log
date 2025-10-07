@@ -1,7 +1,0 @@
-time=2025-10-07T13:53:59.764+01:00 level=INFO msg="[2025-10-07 12:53:59] INFO: Logger initialized successfully level=INFO output_file=code-tools-mcp.log console=true"
-time=2025-10-07T13:53:59.764+01:00 level=INFO msg="[2025-10-07 12:53:59] INFO: Code Tools MCP Server starting version=v0.1.0"
-time=2025-10-07T13:53:59.765+01:00 level=INFO msg="[2025-10-07 12:53:59] INFO: Code Tools MCP Server started and running version=v0.1.0"
-time=2025-10-07T13:54:10.348+01:00 level=INFO msg="[2025-10-07 12:54:10] INFO: Logger initialized successfully level=INFO output_file=code-tools-mcp.log console=true"
-time=2025-10-07T13:54:10.349+01:00 level=INFO msg="[2025-10-07 12:54:10] INFO: Code Tools MCP Server starting version=v0.1.0"
-time=2025-10-07T13:54:10.350+01:00 level=INFO msg="[2025-10-07 12:54:10] INFO: Code Tools MCP Server started and running version=v0.1.0"
-time=2025-10-07T13:54:21.896+01:00 level=INFO msg="[2025-10-07 12:54:21] INFO: Tool call completed: grep"
