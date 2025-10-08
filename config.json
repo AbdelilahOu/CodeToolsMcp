@@ -1,7 +1,7 @@
 {
   "logging": {
     "level": "INFO",
-    "output_file": "code-tools-mcp.log",
+    "output_file": "logs/code-tools-mcp.log",
     "max_size_mb": 10,
     "console": true
   }
