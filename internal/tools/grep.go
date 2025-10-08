@@ -3,11 +3,12 @@ package tools
 import (
 	"context"
 
+	"github.com/AbdelilahOu/CodeToolsMcp/internal/runners"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 const (
-	GrepToolName = "grep"
+	GrepToolName        = "grep"
 	GrepToolDescription = `A powerful search tool built on ripgrep
 
 Usage:
@@ -38,7 +39,7 @@ type GrepOutput struct {
 	Result string `json:"result"`
 }
 
-func NewGrepTool(runner *RipgrepRunner) *ToolDefinition[GrepInput, GrepOutput] {
+func NewGrepTool(runner *runners.RipgrepRunner) *ToolDefinition[GrepInput, GrepOutput] {
 	return NewToolDefinition(
 		GrepToolName,
 		GrepToolDescription,
@@ -47,7 +48,7 @@ func NewGrepTool(runner *RipgrepRunner) *ToolDefinition[GrepInput, GrepOutput] {
 				input.OutputMode = "files_with_matches"
 			}
 
-			result, err := runner.Search(ctx, RipgrepSearchInput{
+			result, err := runner.Search(ctx, runners.RipgrepSearchInput{
 				Pattern:         input.Pattern,
 				Path:            input.Path,
 				Glob:            input.Glob,

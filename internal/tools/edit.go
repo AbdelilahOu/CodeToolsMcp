@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	EditToolName = "edit"
+	EditToolName        = "edit"
 	EditToolDescription = `Performs exact string replacements in files.
 
 Usage:

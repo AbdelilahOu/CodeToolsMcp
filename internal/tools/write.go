@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	WriteToolName = "write"
+	WriteToolName        = "write"
 	WriteToolDescription = `Writes a file to the local filesystem.
 
 Usage:
