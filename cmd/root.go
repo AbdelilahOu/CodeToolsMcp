@@ -12,7 +12,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "CodeToolsMcp",
 	Short: "Code Tools MCP Server - Claude Code compatible tools",
-	Long:  `A Model Context Protocol (MCP) server providing the same powerful code tools that Claude Code uses: Grep (ripgrep), Glob, Read, Edit, and Write.`,
+	Long:  `A Model Context Protocol (MCP) server providing the same powerful code tools that Claude Code uses: Grep (ripgrep), Glob, Read, Edit, Write, Git Status/Log/Diff/Show/Branch, filesystem helpers (list_dir, delete, remove, copy, move, tree), and Run.`,
 }
 
 func Execute() {

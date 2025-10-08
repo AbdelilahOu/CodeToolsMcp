@@ -4,13 +4,25 @@ A Model Context Protocol (MCP) server that provides the same powerful code manip
 
 ## Features
 
-The server exposes 5 core tools that mirror Claude Code's functionality:
+The server exposes 17 core tools that mirror Claude Code's functionality:
 
 1. **grep** - Fast regex-based code search using ripgrep
 2. **glob** - File pattern matching with support for `**/*.ext` patterns
 3. **read** - Read files with line numbers and optional range selection
 4. **edit** - Perform exact string replacements in files
 5. **write** - Create or overwrite files
+6. **git_status** - Show working tree changes in porcelain format
+7. **git_log** - Query commit history with filtering options
+8. **git_diff** - Compare revisions, staged changes, or specific paths
+9. **git_show** - Display commit details or object contents
+10. **git_branch** - List branches with filters and sorting
+11. **list_dir** - Enumerate directory contents
+12. **delete** - Delete a single file
+13. **remove** - Remove files or directories (supports recursive deletion)
+14. **copy** - Copy files or directories
+15. **move** - Move or rename files and directories
+16. **tree** - Visualise directory structures in ASCII form
+17. **run** - Execute shell commands and capture output
 
 ## Installation
 
@@ -62,149 +74,4 @@ Add to your `claude_desktop_config.json`:
     }
   }
 }
-```
-
-### Command Line
-
-```bash
-# Run with config
-./code-tools-mcp stdio --config config.json
-
-# Run without config (uses defaults)
-./code-tools-mcp stdio
-```
-
-## Tools
-
-### 1. grep
-
-Fast regex-based code search powered by ripgrep.
-
-**Parameters:**
-- `pattern` (required): Regular expression pattern to search for
-- `path` (optional): Directory or file to search (defaults to current directory)
-- `glob` (optional): Glob pattern to filter files (e.g., `"*.js"`, `"**/*.{ts,tsx}"`)
-- `type` (optional): File type filter (e.g., `"js"`, `"py"`, `"rust"`, `"go"`)
-- `-i` (optional): Case insensitive search
-- `-n` (optional): Show line numbers (requires `output_mode: "content"`)
-- `-A` (optional): Lines of context after match
-- `-B` (optional): Lines of context before match
-- `-C` (optional): Lines of context before and after match
-- `output_mode` (optional): `"content"` (matching lines), `"files_with_matches"` (default), or `"count"`
-- `head_limit` (optional): Limit output to first N results
-- `multiline` (optional): Enable multiline mode for cross-line patterns
-
-**Example:**
-```json
-{
-  "pattern": "function.*Error",
-  "glob": "**/*.js",
-  "output_mode": "content",
-  "-n": true,
-  "-C": 2
-}
-```
-
-### 2. glob
-
-Fast file pattern matching sorted by modification time.
-
-**Parameters:**
-- `pattern` (required): Glob pattern (e.g., `"**/*.go"`, `"src/**/*.ts"`)
-- `path` (optional): Directory to search in (defaults to current directory)
-
-**Example:**
-```json
-{
-  "pattern": "**/*.go",
-  "path": "/path/to/project"
-}
-```
-
-### 3. read
-
-Read file contents with line numbers (cat -n format).
-
-**Parameters:**
-- `file_path` (required): Absolute path to file
-- `offset` (optional): Line number to start reading from
-- `limit` (optional): Number of lines to read (default: 2000)
-
-**Example:**
-```json
-{
-  "file_path": "/path/to/file.go",
-  "offset": 100,
-  "limit": 50
-}
-```
-
-### 4. edit
-
-Perform exact string replacements in files.
-
-**Parameters:**
-- `file_path` (required): Absolute path to file
-- `old_string` (required): Text to replace (must be unique unless using `replace_all`)
-- `new_string` (required): Replacement text
-- `replace_all` (optional): Replace all occurrences (default: false)
-
-**Example:**
-```json
-{
-  "file_path": "/path/to/file.go",
-  "old_string": "func OldName() {\n\treturn nil\n}",
-  "new_string": "func NewName() {\n\treturn nil\n}"
-}
-```
-
-### 5. write
-
-Create new files or overwrite existing ones.
-
-**Parameters:**
-- `file_path` (required): Absolute path to file
-- `content` (required): File content to write
-
-**Example:**
-```json
-{
-  "file_path": "/path/to/new-file.go",
-  "content": "package main\n\nfunc main() {\n\tprintln(\"Hello\")\n}"
-}
-```
-
-## Why This MCP?
-
-Claude Code uses highly optimized tools like ripgrep for code search and specialized file operations for editing. This MCP provides the exact same functionality to any AI agent, enabling:
-
-- **Fast code search**: ripgrep is orders of magnitude faster than grep
-- **Precise editing**: Exact string matching prevents accidental modifications
-- **Line-numbered reading**: Makes it easy for AI to reference specific lines
-- **Pattern matching**: Powerful glob support for finding files
-- **Same UX**: Other agents get the same capabilities Claude Code has
-
-## Development
-
-### Project Structure
-
-```
-.
-├── cmd/
-│   ├── main.go          # Entry point
-│   └── root.go          # CLI command definitions
-├── internal/
-│   ├── config/          # Configuration loading
-│   ├── logger/          # Logging utilities
-│   ├── server/          # MCP server setup
-│   └── tools/           # Tool implementations
-│       ├── grep.go      # Grep tool
-│       ├── glob.go      # Glob tool
-│       ├── read.go      # Read tool
-│       ├── edit.go      # Edit tool
-│       ├── write.go     # Write tool
-│       ├── ripgrep.go   # Ripgrep runner
-│       ├── tooldef.go   # Tool definition helper
-│       └── tools.go     # Tool registration
-└── config.json
 ```
